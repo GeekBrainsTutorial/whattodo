@@ -1,11 +1,11 @@
-angular@1.2.1
-angular-meteor-data@0.0.5
+angular@1.2.2
+angular-meteor-data@0.0.6
 angular-templates@0.0.1
 angular:angular@1.4.7
 angular:angular-animate@1.4.7
 angular:angular-aria@1.4.7
 angular:angular-material@0.11.4
-autopublish@1.0.4
+angularui:angular-ui-router@0.2.15
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -53,7 +53,8 @@ mongo-id@1.0.1
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
-pbastowski:angular-babel@1.0.2
+pbastowski:angular-babel@1.0.4
+planettraining:material-design-icons@2.0.0
 promise@0.5.1
 random@1.0.5
 reactive-dict@1.1.3

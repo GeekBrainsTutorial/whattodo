@@ -1,11 +1,12 @@
 <head>
 	<meta name="viewport" content="initial-scale=1" />
+	<base href="/">
 </head>
 
-<body layout="column" ng-app="StarterApp" ng-controller="AppController as vm">
+<body layout="column" ng-controller="AppController">
 <md-toolbar layout="row">
 	<div class="md-toolbar-tools">
-		<md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+		<md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
 			<md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg">
 			</md-icon>
 		</md-button>
@@ -19,8 +20,7 @@
 	</md-sidenav>
 	<div layout="column" flex id="content">
 		<md-content layout="column" flex class="md-padding">
-			This Starter Application consists of a Toolbar, SideNav (with two buttons), and Content area.
-			<p>This is the content area! </p>
+			<div ui-view=""></div>
 		</md-content>
 	</div>
 </div>
