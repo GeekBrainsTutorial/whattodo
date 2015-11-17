@@ -1,0 +1,62 @@
+<h2 class="md-title">
+    Введите данные для регистрации
+</h2>
+<md-content layout-padding layout="column">
+
+    <form name="userForm" ng-submit="register()">
+
+        <md-input-container flex-gt-md="40">
+            <label>Имя</label>
+            <input required id="user-name" name="name" ng-model="user.profile.name">
+
+            <div ng-messages="userForm.name.$error">
+                <div ng-message="required">Обязательное поле!</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container flex-gt-md="40">
+            <label>Фамилия</label>
+            <input required id="user-surname" name="surname" ng-model="user.profile.surname">
+
+            <div ng-messages="userForm.surname.$error">
+                <div ng-message="required">Обязательное поле!</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container flex-gt-md="40">
+            <md-select required id="user-sex" name="sex" placeholder="Пол" ng-model="user.profile.sex">
+                <md-option value="0">Неизвестный</md-option>
+                <md-option value="1">Женский</md-option>
+                <md-option value="2">Мужской</md-option>
+            </md-select>
+            <div ng-messages="userForm.sex.$error">
+                <div ng-message="required">Обязательное поле!</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container flex-gt-md="40">
+            <label>email (будет использоваться как логин при входе)</label>
+            <input required name="email" ng-model="user.email"
+                   ng-pattern="emailPattern">
+
+            <div ng-messages="userForm.email.$error">
+                <div ng-message="required">Обязательное поле!</div>
+                <div ng-message="pattern">Не меньше 6 символов</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container flex-gt-md="40">
+            <label>пароль</label>
+            <input required name="password" type="password" ng-minlength="6" ng-model="user.password">
+
+            <div ng-messages="userForm.password.$error">
+                <div ng-message="required">Обязательное поле!</div>
+                <div ng-message="minlength">Не меньше 6 символов</div>
+            </div>
+        </md-input-container>
+
+        <md-button type="submit" class="md-raised md-primary">Регистрация</md-button>
+
+    </form>
+
+</md-content>

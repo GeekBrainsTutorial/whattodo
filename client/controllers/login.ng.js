@@ -1,8 +1,11 @@
-angular.module("WhatToDoApp").controller("LoginCtrl", ['$meteor', '$state',
-    function ($meteor, $state) {
-        var vm = this;
-
-        vm.credentials = {
+angular.module("WhatToDoApp").controller("LoginCtrl", ['$scope', '$meteor', '$state', '$mdDialog',
+    function ($scope, $meteor, $state, $mdDialog) {
+        
+        /**
+         * Entrance data
+         * @type {{email: string, password: string}}
+         */
+        $scope.credentials = {
             email: '',
             password: ''
         };
@@ -11,19 +14,40 @@ angular.module("WhatToDoApp").controller("LoginCtrl", ['$meteor', '$state',
          * The email pattern for validation
          * @type {RegExp}
          */
-        vm.emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        $scope.emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-        vm.error = '';
+        /**
+         * Query send
+         * @type {boolean}
+         */
+        $scope.query = false;
 
-        vm.login = function () {
-            $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then(
+        /**
+         * Auth error
+         * @type {string}
+         */
+        $scope.error = false;
+
+        /**
+         * Login action
+         */
+        $scope.login = function () {
+            $meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password).then(
                 function () {
+                    $mdDialog.hide();
                     $state.go('public');
                 },
                 function (err) {
-                    vm.error = 'Login error - ' + err;
+                    $scope.error = true;
                 }
             );
         };
+
+        /**
+         * Close dialog
+         */
+        $scope.close = function () {
+            $mdDialog.hide();
+        }
     }
 ]);

@@ -1,4 +1,4 @@
-angular.module('WhatToDoApp').controller('AppController', function($scope, $mdDialog, $mdSidenav) {
+angular.module('WhatToDoApp').controller('AppController', function($scope, $meteor, $mdDialog, $mdSidenav) {
 
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();

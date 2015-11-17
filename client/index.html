@@ -7,13 +7,24 @@
 <md-toolbar layout="row">
 	<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
 		<md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
-			<md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg">
-			</md-icon>
+			<md-icon aria-label="Menu" md-svg-icon="navigation:ic_menu_24px"></md-icon>
 		</md-button>
-		<h1>What to do </h1>
-        <div>
-            <md-button class="md-primary" ng-click="showLogin()">Вход</md-button>
-            <md-button class="md-primary" ng-click="showLogin()">Регистрация</md-button>
+		<h1>What to do</h1>
+        <div layout="row" layout-align="center center">
+            <div ng-if="!$root.currentUser" layout="row" layout-align="center center">
+                <md-button class="md-primary" ng-click="showLogin()">Вход</md-button>
+                <md-button class="md-primary" ng-href="/registration">Регистрация</md-button>
+            </div>
+            <div ng-if="$root.currentUser" layout="row" layout-align="center center">
+                <div>
+                    <md-button class="md-primary" ng-href="#">
+                        {{$root.currentUser.profile.name}} {{$root.currentUser.profile.surname}}
+                    </md-button>
+                </div>
+                <div>
+                    <md-button class="md-primary" ng-href="/logout">Выход</md-button>
+                </div>
+            </div>
         </div>
 	</div>
 </md-toolbar>
