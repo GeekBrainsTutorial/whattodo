@@ -5,12 +5,16 @@
 
 <body layout="column" ng-controller="AppController">
 <md-toolbar layout="row">
-	<div class="md-toolbar-tools">
+	<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
 		<md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
 			<md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg">
 			</md-icon>
 		</md-button>
-		<h1>Angular Material: &nbsp; Starter CodePen </h1>
+		<h1>What to do </h1>
+        <div>
+            <md-button class="md-primary" ng-click="showLogin()">Вход</md-button>
+            <md-button class="md-primary" ng-click="showLogin()">Регистрация</md-button>
+        </div>
 	</div>
 </md-toolbar>
 <div layout="row" flex>

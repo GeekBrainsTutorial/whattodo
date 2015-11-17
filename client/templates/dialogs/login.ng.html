@@ -1,0 +1,46 @@
+<md-dialog aria-label="Login">
+    <md-toolbar class="{{error ? 'md-warn' : 'md-primary'}}">
+        <div class="md-toolbar-tools">
+            <h2>
+                <p ng-show="!error" translate>
+                    Введите данные для входа
+                </p>
+
+                <p ng-show="error" translate>
+                    Неверный логин / пароль
+                </p>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="close()">
+                <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <form name="entranceForm" ng-submit="login()">
+            <md-input-container>
+                <label translate>Имя пользователя</label>
+                <input required name="email" ng-model="credentials.email"
+                       ng-pattern="emailPattern">
+
+                <div ng-messages="entranceForm.email.$error">
+                    <div ng-message="required" translate>Обязательное поле!</div>
+                    <div ng-message="pattern" translate>Введите email в формате vasa@yandex.ru</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label translate>Пароль</label>
+                <input required name="password" ng-minlength="6" type="password" ng-model="credentials.password">
+
+                <div ng-messages="entranceForm.password.$error">
+                    <div ng-message="required" translate>Обязательное поле!</div>
+                    <div ng-message="minlength" translate>Не меньше 6 символов</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="query" translate>Вход</md-button>
+                <md-button class="md-raised" type="button" ng-click="showRestorePasswordForm()" ng-disabled="query" translate>Забыли пароль?</md-button>
+            </md-input-container>
+        </form>
+    </md-dialog-content>
+</md-dialog>

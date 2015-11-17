@@ -14,8 +14,10 @@ tracker                 # Meteor's client-side reactive programming library
 standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 
-insecure                # Allow all DB writes from clients (for prototyping)
 angular
 angular:angular-material
 angularui:angular-ui-router
 planettraining:material-design-icons
+accounts-password
+dotansimha:accounts-ui-angular
+angular:angular-messages
