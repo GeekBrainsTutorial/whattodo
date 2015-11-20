@@ -1,5 +1,8 @@
-Meteor.publish("organization", function () {
+Meteor.publish("organization", function (options) {
     return Organization.find({
-        _id: {$in: Meteor.user().profile.organizations}
-    });
+        $or: [
+            { "creator._id": this.userId },
+            { "users._id": this.userId }
+        ]
+    }, options);
 });

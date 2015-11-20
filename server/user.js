@@ -1,4 +1,11 @@
 Meteor.methods({
+    /**
+     * Find user by name, surname, email.
+     * Exclude current user and exists users
+     * @param $query
+     * @param selectedUsers
+     * @returns {any}
+     */
     searchByQuery: function ($query, selectedUsers) {
         return Meteor.users.find({
             $or: [

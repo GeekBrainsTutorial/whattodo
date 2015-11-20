@@ -1,9 +1,0 @@
-
-<div ng-if="$root.currentUser.profile.organization">
-    {{organizations}}
-</div>
-
-<div ng-if="!$root.currentUser.profile.organization" layout="row" layout-align="center center">
-    Вы не состоите не в одной организации.
-    <md-button class="md-primary" ng-href="/create_organization">Создать новую</md-button>
-</div>

@@ -1,9 +1,12 @@
 <h2 class="md-title">
-    Заполните организацию
+    Изменить организацию
 </h2>
 <md-content layout-padding layout="column">
+    <form name="organizationForm" ng-submit="change()">
 
-    <form name="organizationForm" ng-submit="create()">
+        <div flex-gt-md="40">
+            <h2>Создатель: {{organization.creator.name}} {{organization.creator.surname}}</h2>
+        </div>
 
         <md-input-container flex-gt-md="40">
             <label>Название</label>
@@ -13,6 +16,10 @@
                 <div ng-message="required">Обязательное поле!</div>
             </div>
         </md-input-container>
+
+        <md-checkbox aria-label="Disabled checkbox" ng-model="organization.is_public">
+            Публичная
+        </md-checkbox>
 
         <md-input-container flex-gt-md="40">
             <label>Слоган</label>
@@ -34,7 +41,7 @@
                 placeholder="Введите имя или email">
         </md-contact-chips>
 
-        <md-button type="submit" class="md-raised md-primary">Создать</md-button>
+        <md-button type="submit" class="md-raised md-primary">Изменить</md-button>
 
     </form>
 

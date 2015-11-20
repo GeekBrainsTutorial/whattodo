@@ -7,7 +7,7 @@ angular.module('WhatToDoApp').controller('AppController', function($scope, $mete
     $scope.showLogin = function(ev) {
         $mdDialog.show({
                 controller: "LoginCtrl",
-                templateUrl: 'client/templates/dialogs/login.ng.html',
+                templateUrl: 'client/main/views/dialogs/login.ng.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true

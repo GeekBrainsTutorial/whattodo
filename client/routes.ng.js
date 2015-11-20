@@ -15,16 +15,16 @@ angular.module("WhatToDoApp").config(function ($urlRouterProvider, $stateProvide
 
         .state('public', {
             url: '/public',
-            templateUrl: 'client/templates/public.ng.html'
+            templateUrl: 'client/main/views/public.ng.html'
         })
         .state('registration', {
             url: '/registration',
-            templateUrl: 'client/templates/registration.ng.html',
+            templateUrl: 'client/main/views/registration.ng.html',
             controller: 'RegisterCtrl'
         })
         .state('organization', {
             url: '/organization',
-            templateUrl: 'client/templates/organization.ng.html',
+            templateUrl: 'client/organization/views/index.ng.html',
             controller: 'OrganizationCtrl',
             resolve: {
                 "currentUser": function($meteor){
@@ -32,10 +32,30 @@ angular.module("WhatToDoApp").config(function ($urlRouterProvider, $stateProvide
                 }
             }
         })
-        .state('create_organization', {
-            url: '/create_organization',
-            templateUrl: 'client/templates/create_organization.ng.html',
-            controller: 'OrganizationCtrl',
+        .state('organization/detail', {
+            url: '/organization/:orgId',
+            templateUrl: 'client/organization/views/detail.ng.html',
+            controller: 'OrganizationDetailCtrl',
+            resolve: {
+                "currentUser": function($meteor){
+                    return $meteor.requireUser();
+                }
+            }
+        })
+        .state('organization/create', {
+            url: '/create/organization',
+            templateUrl: 'client/organization/views/create.ng.html',
+            controller: 'OrganizationCreateCtrl',
+            resolve: {
+                "currentUser": function($meteor){
+                    return $meteor.requireUser();
+                }
+            }
+        })
+        .state('organization/change', {
+            url: '/change/organization/:orgId',
+            templateUrl: 'client/organization/views/change.ng.html',
+            controller: 'OrganizationChangeCtrl',
             resolve: {
                 "currentUser": function($meteor){
                     return $meteor.requireUser();
