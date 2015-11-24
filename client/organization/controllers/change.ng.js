@@ -1,5 +1,11 @@
-angular.module("WhatToDoApp").controller("OrganizationChangeCtrl", ['$scope', '$meteor', '$state', '$stateParams',
-    function ($scope, $meteor, $state, $stateParams) {
+angular.module("WhatToDoApp").controller("OrganizationChangeCtrl", ['$scope', '$meteor', '$state', '$stateParams', 'helpers',
+    function ($scope, $meteor, $state, $stateParams, helpers) {
+
+        /**
+         * Current user in view
+         * @type {any}
+         */
+        $scope.currentUser = Meteor.user();
 
         /**
          * Search user by query filter
@@ -7,14 +13,10 @@ angular.module("WhatToDoApp").controller("OrganizationChangeCtrl", ['$scope', '$
          * @returns {any}
          */
         $scope.searchUser = function ($query) {
-            return $meteor.call("searchByQuery", $query, $scope.organization.users).then(
-                function (data) {
-                    return data;
-                },
-                function (err) {
-                    console.log('failed', err);
-                }
-            );
+            var exclude = $scope.organization.users.concat($scope.organization.admins);
+            exclude.push($scope.organization.creator);
+
+            return helpers.searchUser($query, exclude);
         };
 
         /**
@@ -23,6 +25,13 @@ angular.module("WhatToDoApp").controller("OrganizationChangeCtrl", ['$scope', '$
          */
         $scope.organization = $meteor.object(Organization, $stateParams.orgId, false);
         $scope.$meteorSubscribe('organization');
+
+        /**
+         * User admin organization data
+         * @type {*|SubscriptionHandle|any}
+         */
+        $scope.isAdmin = $meteor.object(Organization,
+            {"_id": $stateParams.orgId, "admins._id": Meteor.userId()}).subscribe("organization");
 
         /**
          * Change organization by _id
@@ -35,11 +44,21 @@ angular.module("WhatToDoApp").controller("OrganizationChangeCtrl", ['$scope', '$
                     email: c.email
                 };
             });
+
+            $scope.organization.admins = $scope.organization.admins.map(function (c, index) {
+                return {
+                    _id: c._id,
+                    name: c.name,
+                    email: c.email
+                };
+            });
+
             $meteor.call("Organization.change",
                 $scope.organization._id,
                 $scope.organization.name,
                 $scope.organization.is_public,
                 $scope.organization.slogan,
+                $scope.organization.admins,
                 $scope.organization.users
             ).then(
                 function (data) {

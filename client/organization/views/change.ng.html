@@ -1,7 +1,7 @@
 <h2 class="md-title">
     Изменить организацию
 </h2>
-<md-content layout-padding layout="column">
+<md-content layout-padding ng-if="organization.creator._id == currentUser._id" layout="column">
     <form name="organizationForm" ng-submit="change()">
 
         <div flex-gt-md="40">
@@ -30,9 +30,47 @@
             </div>
         </md-input-container>
 
+        <h2 class="md-title">Выберите пользователей, входящих в вашу организацию</h2>
         <md-contact-chips
                 ng-model="organization.users"
-                md-contacts="searchUser($query)"
+                md-contacts="searchUser($query, organization.users)"
+                md-contact-name="name"
+                md-contact-email="email"
+                md-require-match="true"
+                md-highlight-flags="i"
+                filter-selected="true"
+                placeholder="Введите имя или email">
+        </md-contact-chips>
+
+        <h2 class="md-title">Выберите администраторов</h2>
+        <md-contact-chips
+                ng-model="organization.admins"
+                md-contacts="searchUser($query, organization.admins)"
+                md-contact-name="name"
+                md-contact-email="email"
+                md-require-match="true"
+                md-highlight-flags="i"
+                filter-selected="true"
+                placeholder="Введите имя или email">
+        </md-contact-chips>
+
+        <md-button type="submit" class="md-raised md-primary">Изменить</md-button>
+
+    </form>
+
+</md-content>
+
+<md-content layout-padding ng-if="isAdmin._id == organization._id" layout="column">
+    <form name="organizationForm" ng-submit="change()">
+
+        <div flex-gt-md="40">
+            <h2>Создатель: {{organization.creator.name}} {{organization.creator.surname}}</h2>
+        </div>
+
+        <h2 class="md-title">Можно добавлять и удалять пользователей</h2>
+        <md-contact-chips
+                ng-model="organization.users"
+                md-contacts="searchUser($query, organization.users)"
                 md-contact-name="name"
                 md-contact-email="email"
                 md-require-match="true"

@@ -32,3 +32,18 @@ if (Meteor.isCordova)
 	angular.element(document).on('deviceready', onReady);
 else
 	angular.element(document).ready(onReady);
+
+angular.module('WhatToDoApp').factory("helpers", function ($meteor) {
+	return {
+		searchUser: function ($query, exclude) {
+			return $meteor.call("searchByQuery", $query, exclude).then(
+				function (data) {
+					return data;
+				},
+				function (err) {
+					console.log('failed', err);
+				}
+			);
+		}
+	};
+});

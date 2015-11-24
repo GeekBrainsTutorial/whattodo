@@ -2,6 +2,12 @@ angular.module("WhatToDoApp").controller("OrganizationCtrl", ['$scope', '$meteor
     function ($scope, $meteor, $state) {
 
         /**
+         * Current user in view
+         * @type {any}
+         */
+        $scope.currentUser = Meteor.user();
+
+        /**
          * Users organization
          * @type {any|SubscriptionHandle|*}
          */
