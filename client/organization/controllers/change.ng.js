@@ -27,11 +27,24 @@ angular.module("WhatToDoApp").controller("OrganizationChangeCtrl", ['$scope', '$
         $scope.$meteorSubscribe('organization');
 
         /**
-         * User admin organization data
-         * @type {*|SubscriptionHandle|any}
+         * Check user is creator
+         * @returns {boolean}
          */
-        $scope.isAdmin = $meteor.object(Organization,
-            {"_id": $stateParams.orgId, "admins._id": Meteor.userId()}).subscribe("organization");
+        $scope.isCreator = function () {
+            if($scope.organization.creator)
+                return $scope.organization.creator._id == Meteor.userId();
+        };
+
+        /**
+         * Check user is admin
+         * @returns {boolean}
+         */
+        $scope.isAdmin = function () {
+            for (var index in $scope.organization.admins) {
+                if($scope.organization.admins[index]._id == Meteor.userId())
+                    return true;
+            }
+        };
 
         /**
          * Change organization by _id

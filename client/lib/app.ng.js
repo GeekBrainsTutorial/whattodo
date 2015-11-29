@@ -47,3 +47,26 @@ angular.module('WhatToDoApp').factory("helpers", function ($meteor) {
 		}
 	};
 });
+
+angular.module('WhatToDoApp').factory("conditions", function () {
+	return {
+		organization: {
+			imMember: {
+				$or: [
+					{ "creator._id": this.userId },
+					{ "users._id": this.userId },
+					{ "admins._id": this.userId }
+				]
+			},
+			imCreator: {
+				"creator._id": this.userId
+			},
+			imAdmin: {
+				"admins._id": this.userId
+			},
+			imUser: {
+				"admins._id": this.userId
+			}
+		}
+	};
+});

@@ -1,5 +1,5 @@
-angular.module("WhatToDoApp").controller("OrganizationCtrl", ['$scope', '$meteor', '$state',
-    function ($scope, $meteor, $state) {
+angular.module("WhatToDoApp").controller("OrganizationCtrl", ['$scope', '$meteor', '$state', 'conditions',
+    function ($scope, $meteor, $state, conditions) {
 
         /**
          * Current user in view
@@ -8,10 +8,38 @@ angular.module("WhatToDoApp").controller("OrganizationCtrl", ['$scope', '$meteor
         $scope.currentUser = Meteor.user();
 
         /**
+         * Check current user update organization
+         * @param item
+         * @returns {boolean}
+         */
+        $scope.allowUpdate = function (item)
+        {
+            if(item.creator._id == Meteor.userId())
+                return true;
+
+            for (var index in item.admins)
+            {
+                if (item.admins[index]._id == Meteor.userId())
+                    return true;
+            }
+            return false;
+        };
+
+        /**
+         * Check current user delete organization
+         * @param item
+         * @returns {boolean}
+         */
+        $scope.allowDelete = function (item)
+        {
+            return item.creator._id == Meteor.userId();
+        };
+
+        /**
          * Users organization
          * @type {any|SubscriptionHandle|*}
          */
-        $scope.organizations = $meteor.collection(Organization)
+        $scope.organizations = $meteor.collection(Organization, conditions.imMember)
             .subscribe('organization');
 
         /**
