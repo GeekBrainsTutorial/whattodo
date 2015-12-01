@@ -1,3 +1,3 @@
-Meteor.publish("organization", function (options) {
-    return Organization.find({}, options);
+Meteor.publish("organization", function (selector, options) {
+    return Organization.find(selector, options)
 });

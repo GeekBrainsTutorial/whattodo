@@ -6,17 +6,12 @@ angular.module('WhatToDoApp').controller('AppController', function($scope, $mete
 
     $scope.showLogin = function(ev) {
         $mdDialog.show({
-                controller: "LoginCtrl",
-                templateUrl: 'client/main/views/dialogs/login.ng.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true
-            })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
-            });
+            controller: "LoginCtrl",
+            templateUrl: 'client/main/views/dialogs/login.ng.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true
+        });
     };
 
 });

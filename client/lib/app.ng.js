@@ -37,12 +37,12 @@ angular.module('WhatToDoApp').factory("helpers", function ($meteor) {
 	return {
 		searchUser: function ($query, exclude) {
 			return $meteor.call("searchByQuery", $query, exclude).then(
-				function (data) {
-					return data;
-				},
-				function (err) {
-					console.log('failed', err);
-				}
+					function (data) {
+						return data;
+					},
+					function (err) {
+						console.log('failed', err);
+					}
 			);
 		}
 	};
@@ -50,23 +50,33 @@ angular.module('WhatToDoApp').factory("helpers", function ($meteor) {
 
 angular.module('WhatToDoApp').factory("conditions", function () {
 	return {
+		/**
+		 * Organization conditions
+		 */
 		organization: {
 			imMember: {
 				$or: [
-					{ "creator._id": this.userId },
-					{ "users._id": this.userId },
-					{ "admins._id": this.userId }
+					{ "creator._id": Meteor.userId() },
+					{ "users._id": Meteor.userId() },
+					{ "admins._id": Meteor.userId() }
 				]
 			},
 			imCreator: {
-				"creator._id": this.userId
+				"creator._id": Meteor.userId()
 			},
 			imAdmin: {
-				"admins._id": this.userId
+				"admins._id": Meteor.userId()
 			},
 			imUser: {
-				"admins._id": this.userId
+				"admins._id": Meteor.userId()
 			}
+		},
+		/**
+		 * Task conditions
+		 */
+		task: {
+			imCreator: { "creator._id": Meteor.userId() },
+			imExecutor: { userId: Meteor.userId() }
 		}
 	};
 });

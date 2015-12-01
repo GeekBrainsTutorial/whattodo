@@ -11,14 +11,30 @@
     <md-list>
         <md-subheader class="md-no-sticky">Администраторы: </md-subheader>
         <md-list-item class="md-3-line" ng-repeat="admin in organization.admins">
+            <md-button class="md-icon-button" ng-click="createTask(organization._id, admin._id)">
+                <md-tooltip md-direction="buttom">
+                    Создать задачу
+                </md-tooltip>
+                <md-icon md-svg-src="action:ic_alarm_add_24px" aria-label="Создать задачу"></md-icon>
+            </md-button>
             <div class="md-list-item-text" layout="column">
-                <h3>{{ admin.name }}</h3>
-                <p>{{ admin.email }}</p>
+                <h3>
+                    {{ admin.name }}
+                </h3>
+                <p>
+                    {{ admin.email }}
+                </p>
             </div>
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader class="md-no-sticky">Пользователи: </md-subheader>
         <md-list-item class="md-3-line" ng-repeat="user in organization.users">
+            <md-button class="md-icon-button" ng-click="createTask(organization._id, user._id)">
+                <md-tooltip md-direction="buttom">
+                    Создать задачу
+                </md-tooltip>
+                <md-icon md-svg-src="action:ic_alarm_add_24px" aria-label="Создать задачу"></md-icon>
+            </md-button>
             <div class="md-list-item-text" layout="column">
                 <h3>{{ user.name }}</h3>
                 <p>{{ user.email }}</p>

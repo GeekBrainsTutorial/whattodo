@@ -62,6 +62,26 @@ angular.module("WhatToDoApp").config(function ($urlRouterProvider, $stateProvide
                 }
             }
         })
+        .state('task/creator', {
+            url: '/task/creator',
+            templateUrl: 'client/task/views/creator.ng.html',
+            controller: 'TaskCreatorCtrl',
+            resolve: {
+                "currentUser": function($meteor){
+                    return $meteor.requireUser();
+                }
+            }
+        })
+        .state('task/executor', {
+            url: '/task/executor',
+            templateUrl: 'client/task/views/executor.ng.html',
+            controller: 'TaskExecutorCtrl',
+            resolve: {
+                "currentUser": function($meteor){
+                    return $meteor.requireUser();
+                }
+            }
+        })
         .state('logout', {
             url: '/logout',
             resolve: {

@@ -39,8 +39,8 @@ angular.module("WhatToDoApp").controller("OrganizationCtrl", ['$scope', '$meteor
          * Users organization
          * @type {any|SubscriptionHandle|*}
          */
-        $scope.organizations = $meteor.collection(Organization, conditions.imMember)
-            .subscribe('organization');
+        $scope.organizations = $meteor.collection(Organization)
+            .subscribe('organization', conditions.organization.imMember);
 
         /**
          * Remove the organization by id

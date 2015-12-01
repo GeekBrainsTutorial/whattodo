@@ -1,5 +1,5 @@
 /**
- * Create new collections
+ * Organization collections
  * @type {Mongo.Collection}
  */
 Organization = new Mongo.Collection("organization");
