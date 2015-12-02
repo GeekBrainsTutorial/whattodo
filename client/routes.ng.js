@@ -13,9 +13,15 @@ angular.module("WhatToDoApp").config(function ($urlRouterProvider, $stateProvide
 
     $stateProvider
 
-        .state('public', {
+        .state('public/organizations', {
             url: '/public',
-            templateUrl: 'client/main/views/public.ng.html'
+            templateUrl: 'client/organization/views/public.ng.html',
+            controller: 'OrganizationPublicCtrl'
+        })
+        .state('public/tasks', {
+            url: '/task/public/:orgId',
+            templateUrl: 'client/task/views/public.ng.html',
+            controller: 'TaskPublicCtrl'
         })
         .state('registration', {
             url: '/registration',

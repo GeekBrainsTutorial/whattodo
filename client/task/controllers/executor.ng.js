@@ -8,17 +8,5 @@ angular.module("WhatToDoApp").controller("TaskExecutorCtrl", ['$scope', '$meteor
             .then(function(subscriptionHandle) {
                 $scope.executeTask = $meteor.collection(Task);
             });
-
-        /**
-         * Toggle is complete status
-         */
-        $scope.toggleIsComplete = function (taskId) {
-            $meteor.call("Task.toggleIsComplete", taskId).then(
-                function (data) { },
-                function (error) {
-                    console.log(error);
-                }
-            );
-        };
     }
 ]);

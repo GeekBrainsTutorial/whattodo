@@ -9,7 +9,7 @@ Task = new Mongo.Collection("task");
  */
 Task.allow({
     insert: function () {
-        return true;
+        return false;
     },
     update: function (userId, doc) {
         return userId == doc.creator._id || userId == doc.userId;
@@ -27,7 +27,7 @@ Meteor.methods({
      * @param task
      * @constructor
      */
-    "Task.create": function (orgId, userId, task) {
+    "Task.create": function (orgId, userId, task, deadline) {
         check(orgId, String);
         check(userId, String);
         check(task, String);
@@ -41,6 +41,7 @@ Meteor.methods({
             is_complete: false,
             userId: userId,
             task: task,
+            deadline: deadline,
             creator: {
                 _id: Meteor.userId(),
                 name: Meteor.user().profile.name,

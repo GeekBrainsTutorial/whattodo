@@ -1,0 +1,19 @@
+<md-content ng-if="organizations.length > 0">
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="item in organizations">
+            <div class="md-list-item-text">
+                <h3>{{item.name}}</h3>
+                <h4>{{item.creator.name + " " + item.creator.surname}}</h4>
+                <p>{{item.slogan}}</p>
+            </div>
+            <md-button class="md-primary" ng-href="/task/public/{{item._id}}">Посмотреть задачи</md-button>
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
+    <md-button class="md-primary" ng-href="/create/organization">Создать новую</md-button>
+</md-content>
+
+<div ng-if="organizations.length <= 0" layout="row" layout-align="center center">
+    Нет публичных организаций
+    <md-button class="md-primary" ng-href="/create/organization">Создать новую</md-button>
+</div>
