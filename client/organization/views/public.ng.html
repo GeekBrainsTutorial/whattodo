@@ -8,8 +8,7 @@
                     <p>{{item.slogan}}</p>
                 </div>
             </a>
-            <md-button ng-if="allowUpdate(item)" class="md-primary" ng-href="/change/organization/{{item._id}}">Изменить</md-button>
-            <md-button ng-if="allowDelete(item)" class="md-warn" ng-click="remove(item._id)">Удалить</md-button>
+            <md-button class="md-primary" ng-href="/task/public/{{item._id}}">Посмотреть задачи</md-button>
             <md-divider ng-if="!$last"></md-divider>
         </md-list-item>
     </md-list>
@@ -17,6 +16,6 @@
 </md-content>
 
 <div ng-if="organizations.length <= 0" layout="row" layout-align="center center">
-    Вы не состоите не в одной организации.
+    Нет публичных организаций
     <md-button class="md-primary" ng-href="/create/organization">Создать новую</md-button>
 </div>

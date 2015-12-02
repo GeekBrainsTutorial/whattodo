@@ -1,0 +1,13 @@
+<md-list ng-cloak>
+    <md-subheader class="md-no-sticky">Задачи, которые вы создали</md-subheader>
+    <md-list-item ng-repeat="task in tasks">
+        <md-checkbox ng-disabled="true"  ng-model="task.is_complete"></md-checkbox>
+        <p>
+            {{task.task}}
+        </p>
+        <p>
+            <md-icon md-svg-src="action:ic_alarm_add_24px" aria-label="deadline"></md-icon>
+            {{task.deadline | date:'yyyy-MM-dd'}}
+        </p>
+    </md-list-item>
+</md-list>

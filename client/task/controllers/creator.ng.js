@@ -2,7 +2,7 @@ angular.module("WhatToDoApp").controller("TaskCreatorCtrl", ['$scope', '$meteor'
     function ($scope, $meteor, $state, conditions) {
 
         /**
-         * @type {SubscriptionHandle|any|*}
+         * Subscribe on the task. Destroy scope - destroy collection
          */
         $scope.$meteorSubscribe('task', conditions.task.imCreator)
             .then(function(subscriptionHandle) {
@@ -14,18 +14,6 @@ angular.module("WhatToDoApp").controller("TaskCreatorCtrl", ['$scope', '$meteor'
          */
         $scope.remove = function (taskId) {
             $meteor.call("Task.remove", taskId).then(
-                function (data) { },
-                function (error) {
-                    console.log(error);
-                }
-            );
-        };
-
-        /**
-         * Toggle is complete status
-         */
-        $scope.toggleIsComplete = function (taskId) {
-            $meteor.call("Task.toggleIsComplete", taskId).then(
                 function (data) { },
                 function (error) {
                     console.log(error);

@@ -69,12 +69,20 @@ angular.module('WhatToDoApp').factory("conditions", function () {
 			},
 			imUser: {
 				"admins._id": Meteor.userId()
+			},
+			isPublic: {
+				"is_public" : true
 			}
 		},
 		/**
 		 * Task conditions
 		 */
 		task: {
+			byOrgId: function (orgId) {
+				return {
+					orgId: orgId
+				}
+			},
 			imCreator: { "creator._id": Meteor.userId() },
 			imExecutor: { userId: Meteor.userId() }
 		}
